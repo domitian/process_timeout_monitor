@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 int main(){
-int a[100000] = {0};
+long long int a[100000] = {0};
 int i = 0;
 for(;;){
 	while(i<10000){
