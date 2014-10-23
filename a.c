@@ -5,6 +5,7 @@ long long int a[100000] = {0};
 int i = 0;
 for(;;){
 	while(i<10000){
+	printf('dd');
 	a[i]=1;
 	}
 	i=0;

@@ -8,10 +8,13 @@ use Proc::ProcessTable;
 my $process_object = new Proc::ProcessTable;
 my $process_alive = 0;
 my $time_allowed = 10;
+my $exit_status = 0;
 $pid = fork();
 
 if ($pid == 0){
 	`./testing`;
+	$exit_status = $?;
+	print "exit status is $exit_status";
 	exit();
 }
 print "this is parent process";
@@ -31,7 +34,11 @@ while($process_alive == "0"){
 				print "i the parent killed child\n";
 				$process_alive = 1;
 			}
-			else{
+			elsif($memory > 256){
+				$p->kill(9);
+				$process_alive = 1;
+				print "Killing the process because of memory exhaustion";
+			}else{
 				print "not yet killing\n";
 			}
 		}
